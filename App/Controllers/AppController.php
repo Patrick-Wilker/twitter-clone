@@ -87,6 +87,22 @@
 			header('Location: /quem_seguir');
 
 		}
+
+		public function removerTweet(){
+			$this->validaAutenticacao();
+
+			$removerTweet = isset($_POST['id']) ? $_POST['id'] : '';
+			
+			$tweet = array();
+
+			if($removerTweet != ''){
+				$tweet = Container::getModel('Tweet');
+				$tweet->__set('id', $_SESSION['id']);
+				$tweet->removerTweet($removerTweet);
+			}
+
+			header('Location: /timeline');
+		}
 	}
 
 ?>
